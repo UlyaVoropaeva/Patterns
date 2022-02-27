@@ -1,4 +1,4 @@
-package inform;
+package sender;
 
 import entity.User;
 import repository.Sender;

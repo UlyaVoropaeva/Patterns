@@ -1,9 +1,9 @@
 package factory;
 
 import entity.User;
-import inform.ChatSender;
-import inform.EmailSender;
-import inform.SmsSender;
+import sender.ChatSender;
+import sender.EmailSender;
+import sender.SmsSender;
 import repository.Sender;
 
 import java.util.Locale;
