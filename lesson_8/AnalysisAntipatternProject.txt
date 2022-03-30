@@ -1,0 +1,37 @@
+Урок 8. Антипаттерны
+1. Провести анализ своего проекта на использование антипаттернов.
+
+В домашнем проекте были использованы антипаттерны:
+1. Hard Code // Жесткое кодирование
+очень часто использовала (дз №3, 4, 5, 6):  System.out.print("");
+метод устранения: использовать @Slf4j   log.debug();
+
+ 2. Copy–Paste // Программирование методом копирования–вставки
+причина - отсуствие времени
+Решение: вместо копирования кода внутри проекта необходимо создавать общие решения, которые
+будут переиспользоваться различными компонентами
+
+3. Interface Soup // Интерфейсная солянка и Stub // Заглушка
+В части выполнения кода:
+public class SessionsManagerImpl implements SessionsManagerAuth {
+private FindByIndexNameSessionRepository sessionRepository;
+@Override
+public Session createSession() {
+ return null;
+ }
+ @Override
+public void save(Session session) {
+}
+...
+}
+
+public interface SessionsManagerAuth<S extends Session> {
+    S createSession();
+    void save(S session);
+    S findById(String id);
+    void deleteById(String id);
+    void deleteSessionExceptCurrentByUser(String username);
+}
+
+Излишние методы в самом интерфейсе. Использовать интерфейс для решения конкретной задачи.
+Решение: создать новый интерфейс для этого случая.
